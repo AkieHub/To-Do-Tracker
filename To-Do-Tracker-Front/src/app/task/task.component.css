@@ -1,0 +1,31 @@
+
+.mat-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+  
+  .achievements-section {
+    margin: 0 3px;
+  }
+  
+  .ak {
+    background-color: transparent !important;
+  }
+  
+  .box {
+    width: 100% !important;
+    table-layout: fixed !important;
+  }
+  
+  .mat-accordion {
+    overflow: hidden !important;
+  }
+
+  table {
+  width: 100% !important;
+  table-layout: fixed !important;
+}
+
+table td {
+  overflow: hidden !important;
+}

@@ -1,0 +1,74 @@
+
+mat-toolbar {
+  color: rgb(24, 24, 24);
+  position: relative;
+  z-index: 5;
+  box-shadow: px 10px 10px -10px rgb(18, 18, 18) !important;
+  border-radius:  0px 0px 10px 10px;
+}
+
+mat-sidenav {
+  margin: 16px;
+  width: 200px;
+  border-right: none;
+  background: #002b5c;
+  color: white;
+  border-radius: 10px;
+  padding: 16px;
+  text-align: center;
+}
+
+.content {
+  height: calc(100vh - 98px);
+  border-radius: 10px;
+  margin: 16px;
+  margin-left: 32px;
+
+  display: flex;
+  
+  justify-content: center;
+  /* align-items: center; */
+  color: rgb(27, 26, 26);
+}
+
+mat-sidenav-container {
+  height: calc(100vh - 65px);
+}
+.menu-button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 1rem;
+ 
+}
+.mat-icon {
+  margin-right: 8px;
+}
+
+.avatar {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+}
+.name {
+  margin-top: 5px;
+  font-weight: normal;
+}
+
+
+mat-divider {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.addTask{
+  position: fixed;
+  align-self: flex-end;
+  right: 7vmax;
+  bottom: 8vmax;
+}
+.mat-nav-list{
+  padding-top: 0px !important;
+}

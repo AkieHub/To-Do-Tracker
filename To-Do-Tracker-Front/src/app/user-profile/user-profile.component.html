@@ -1,0 +1,59 @@
+
+<div class="card container">
+    <h5 class="card-header text-center fw-bold fs-6 border-white"> USER PROFILE </h5>
+    <div class="card-body">
+        <form [formGroup]="userProfile" class="flex-wrap" (ngSubmit)="onSubmit()">
+            <div class="form-row">
+                <div class="form-group col-lg-4">
+                    <label>First Name</label>
+                    <input type="text" name="firstName" class="form-control" formControlName="firstName">
+                    <div
+                        *ngIf="userProfile.get('firstName')?.invalid && (userProfile.get('firstName')?.dirty ||userProfile.get('firstName')?.touched)">
+                        <div *ngIf="userProfile.get('firstName')?.errors?.['required']">First Name is required</div>
+                    </div>
+                </div>
+                <div class="form-group col-lg-5">
+                    <label>Last Name</label>
+                    <input type="text" name="lastName" class="form-control" formControlName="lastName">
+                    <!-- <div *ngIf="f.submitted && lastName.invalid" class="invalid-feedback">
+                        <div *ngIf="lastName.errors.required">Last Name is required</div>
+                    </div> -->
+                </div>
+                <div class="form-group col-lg-3">
+                    <label>Gender</label>
+                    <select name="gender" class="form-control" formControlName="gender">
+                        <option value=""></option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Other">Other</option>
+                    </select>
+                    <div
+                        *ngIf="userProfile.get('gender')?.invalid && (userProfile.get('gender')?.dirty ||userProfile.get('gender')?.touched)">
+                        <div *ngIf="userProfile.get('gender')?.errors?.['required']">Gender is required</div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-lg-6">
+                    <label>Date of Birth</label>
+                    <input type="date" name="dateOfBirth" class="form-control"
+                        pattern="^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$" formControlName="dateOfBirth">
+                    <div
+                        *ngIf="userProfile.get('dateOfBirth')?.invalid && (userProfile.get('dateOfBirth')?.dirty ||userProfile.get('dateOfBirth')?.touched)">
+                        <div *ngIf="userProfile.get('dateOfBirth')?.errors?.['required']">Date of Birth is required</div>
+                        <div *ngIf="userProfile.get('dateOfBirth')?.errors?.['notVailid']">Date of Birth must be >18</div>
+                    </div>
+                </div>
+                <div class="form-group col-lg-6">
+                    <label>Email</label>
+                    <input type="text" name="emailId" class="form-control" formControlName="emailId" readonly>
+                </div>
+            </div>
+            <mat-dialog-actions align="end">
+                <button mat-button class="btn btn-primary mr-1" *ngIf="!userProfile.pristine && userProfile.valid">Update</button>
+                <button mat-button mat-dialog-close class="btn btn-secondary">Close</button>
+        </mat-dialog-actions>
+        </form>
+    </div>
+</div>
+  

@@ -1,0 +1,31 @@
+<div class="card bg-dark container text-white">
+    <h5 class="card-header text-center fw-bold fs-6 border-white">To Do Tracker login Form</h5>
+    <div class="card-body">
+        <form [formGroup]="loginForm" (ngSubmit)="login()">
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="text" name="emailId" class="form-control" formControlName="emailId">
+                    <div
+                        *ngIf="loginForm.get('emailId')?.invalid && (loginForm.get('emailId')?.dirty ||loginForm.get('emailId')?.touched)">
+                        <div *ngIf="loginForm.get('emailId')?.errors?.['required']">Email is required</div>
+                        <div *ngIf="loginForm.get('emailId')?.errors?.['email']">Email must be a valid email address
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" name="userPassword" class="form-control" formControlName="userPassword">
+                    <a routerLink="/forgotpassword">Forgot password </a>
+                    <div
+                        *ngIf="loginForm.get('userPassword')?.invalid && (loginForm.get('userPassword')?.dirty ||loginForm.get('userPassword')?.touched)">
+                        <div *ngIf="loginForm.get('userPassword')?.errors?.['required']">Password is required</div>
+                        <div *ngIf="loginForm.get('userPassword')?.errors?.['minlength']">Password must be at least 6
+                            characters</div>
+                    </div>
+                </div>
+            <div class="text-center card-text">
+                <button type="submit" class="btn  btn-outline-light" [disabled]="!loginForm.valid">login</button>
+            </div>
+        </form>
+    </div>
+</div>

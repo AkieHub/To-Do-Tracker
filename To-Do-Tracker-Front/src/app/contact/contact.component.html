@@ -1,0 +1,60 @@
+<section class="row m-4 achievements-section">
+  <div class="d-flex
+  col-sm-12 col-md-6 col-lg-5
+              flex-column
+              justify-content-center
+              p-2
+              align-items-center">
+
+    <div class="card bg-dark container text-white">
+      <h5 class="card-header text-center fw-bold fs-6 border-white">CONTACT US</h5>
+      <div class="card-body">
+        <form [formGroup]="contact" class="flex-wrap" (ngSubmit)="onSubmit()">
+
+          <div class="form-row">
+
+            <label>NAME</label>
+            <input class="form-control" type="text" name="name" placeholder="Name" formControlName="email">
+            <div *ngIf="contact.get('name')?.invalid && (contact.get('name')?.dirty ||contact.get('name')?.touched)">
+              <div *ngIf="contact.get('name')?.errors?.['required']">Name required</div>
+            </div>
+          </div>
+          <div class="form-row">
+            <label>Email</label>
+            <input type="email" name="email" placeholder="Email" class="form-control" formControlName="email">
+            <div *ngIf="contact.get('email')?.invalid && (contact.get('email')?.dirty ||contact.get('email')?.touched)">
+              <div *ngIf="contact.get('email')?.errors?.['required']">Email required</div>
+              <div *ngIf="contact.get('emailId')?.errors?.['email']">Email must be a valid email address
+              </div>
+            </div>
+          </div>
+
+            <div class="form-row">
+              <label>Message</label>
+              <textarea class="form-control" name="message" rows="2" maxlength="3" placeholder="Message"
+                formControlName="message"></textarea>
+            </div>
+            <div class="text-center card-text mt-2">
+              <button type="submit" class="btn btn-outline-light mr-1" [disabled]="!contact.valid">Send</button>
+              <button class="btn btn-light" type="reset">Cancel</button>
+            </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="d-flex
+    col-sm-12 col-md-6 col-lg-6
+                flex-column
+                justify-content-center
+                p-2
+                align-items-center">
+    <h1 class="wrap fw-bold fs-1">To Do Tracker</h1>
+    <mat-divider></mat-divider>
+    <p class="pt-2 text-wrap description">
+      To-do Tracker help center is fresh and always open for
+      business. If you can't find the answer you're looking for, we're here to lend a hand.
+    </p>
+    <img class="img-fluid achievement-image" src="https://psdgang.com//wp-content/uploads/2017/04/004.gif" />
+  </div>
+</section>

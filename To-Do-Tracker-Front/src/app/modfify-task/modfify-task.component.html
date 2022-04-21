@@ -1,0 +1,62 @@
+<h5 mat-dialog-title>Update Task</h5>
+<div div mat-dialog-content>
+    <form [formGroup]="modifyTask" (ngSubmit)="onSubmit()">
+        <div class="form-group col">
+            <label>task Heading </label>
+            <input type="text" name="taskHeading" class="form-control" formControlName="taskHeading">
+            <div
+                *ngIf="modifyTask.get('taskHeading')?.invalid && (modifyTask.get('taskHeading')?.dirty ||modifyTask.get('taskHeading')?.touched)">
+                <div *ngIf="modifyTask.get('taskHeading')?.errors?.['required']">task Id is required</div>
+            </div>
+        </div>
+        <div class="form-group col">
+            <label> category Name </label>
+            <input type="text" name="categoryName" class="form-control" formControlName="categoryName">
+            <div
+                *ngIf="modifyTask.get('categoryName')?.invalid && (modifyTask.get('categoryName')?.dirty ||modifyTask.get('categoryName')?.touched)">
+                <div *ngIf="modifyTask.get('categoryName')?.errors?.['required']">task Id is required</div>
+            </div>
+        </div>
+        <div class="form-group col">
+            <label>Task Description </label>
+            <input type="text" name="taskDescription" class="form-control" formControlName="taskDescription">
+            <div
+                *ngIf="modifyTask.get('taskDescription')?.invalid && (modifyTask.get('taskDescription')?.dirty ||modifyTask.get('taskDescription')?.touched)">
+                <div *ngIf="modifyTask.get('taskDescription')?.errors?.['required']">task Id is required</div>
+            </div>
+        </div>
+        <div class="form-group col">
+            <label>Priority</label>
+            <select name="priority" class="form-control" formControlName="priority" value="NORMAL">
+                <option value="NORMAL">NORMAL</option>
+                <option value="HIGH">HIGH</option>
+                <option value="LOW">LOW</option>
+            </select>
+            <div
+                *ngIf="modifyTask.get('priority')?.invalid && (modifyTask.get('priority')?.dirty ||modifyTask.get('priority')?.touched)">
+                <div *ngIf="modifyTask.get('priority')?.errors?.['required']">Priority is required</div>
+            </div>
+        </div>
+        <div class="form-group col">
+            <label>start Date</label>
+            <input type="date" name="taskStartDate" class="form-control" formControlName="taskStartDate">
+            <div
+                *ngIf="modifyTask.get('taskStartDate')?.invalid && (modifyTask.get('taskStartDate')?.dirty ||modifyTask.get('taskStartDate')?.touched)">
+                <div *ngIf="modifyTask.get('taskStartDate')?.errors?.['required']">Start Date is required</div>
+            </div>
+        </div>
+        <div class="form-group col">
+            <label>start Date</label>
+            <input type="date" name="taskEndDate" class="form-control" formControlName="taskEndDate">
+            <div
+                *ngIf="modifyTask.get('taskEndDate')?.invalid && (modifyTask.get('taskEndDate')?.dirty ||modifyTask.get('taskEndDate')?.touched)">
+                <div *ngIf="modifyTask.get('taskEndDate')?.errors?.['required']">Start Date is required</div>
+                <div *ngIf="modifyTask.get('taskEndDate')?.errors?.['startDateIsMore']">End Date is required </div>
+            </div>
+        </div>
+        <mat-dialog-actions>
+            <button type="submit" class="btn btn-primary mr-1" [disabled]="!modifyTask.valid">Update</button>
+            <button mat-dialog-close class="btn btn-secondary" type="reset">Cancel</button>
+        </mat-dialog-actions>
+    </form>
+</div>

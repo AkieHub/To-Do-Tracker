@@ -1,0 +1,78 @@
+<!-- 
+      <div class="container">
+          <div class="p-3 row box mat-elevation-z4" *ngFor="let item of datareceive">
+            <span class=" col-4"><small>Task Name</small> : {{item.taskHeading}}</span>
+            <span class="align-middle col-4"><small>Task Due Date</small> : {{item.taskEndDate |date}}</span>
+            <span class="align-middle col-3"><small>Priority</small> : {{item.priority}}</span>
+            <button class="col-1" mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+              <a (click)="updateTask(item)" mat-menu-item>
+                <mat-icon>edit</mat-icon>
+                <span>Update</span>
+              </a>
+              <a (click)="deleteTask(item.taskId)"  mat-menu-item>
+                <mat-icon>delete</mat-icon>
+                <span>Delete</span>
+              </a>
+              <a (click)="markCompletedTask(item.taskId)" mat-menu-item>
+                <mat-icon>check_circle_outline</mat-icon>
+                <span>Completed</span>
+              </a>
+            </mat-menu>
+          </div>
+      </div> -->
+<div class="container">
+  <mat-form-field appearance="standard">
+    <mat-label>Search</mat-label>
+    <input matInput placeholder="Task Name ,Date,Priority" [(ngModel)]="searchText">
+    <mat-icon matSuffix>search</mat-icon>
+  </mat-form-field>
+  <div>
+  <table class="table table-light table-bordered">
+    <thead>
+      <tr>
+        <th>View</th>
+        <th (click)="sort('taskHeading')">Task Name</th>
+        <th>Start Date</th>
+        <th>Due Date</th>
+        <th>Priority</th>
+        <th *ngIf="typea==false">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr mat-button class="mat-elevation-z4" *ngFor="let item of datareceive | filter: searchText">
+        <td (click)="openDilog(item)">
+          <span matTooltip="click to View Data" matTooltipPosition="right" class="material-icons btn">
+            table_view
+          </span>
+        </td>
+        <td>{{item.taskHeading}}</td>
+        <td>{{item.taskStartDate |date}}</td>
+        <td>{{item.taskEndDate|date}}</td>
+        <td>{{item.priority}}</td>
+        <td *ngIf="typea==false">
+          <button class="col-1" mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <a (click)="updateTask(item)" mat-menu-item>
+              <mat-icon>edit</mat-icon>
+              <span>Update</span>
+            </a>
+            <a (click)="deleteTask(item.taskId)" mat-menu-item>
+              <mat-icon>delete</mat-icon>
+              <span>Delete</span>
+            </a>
+            <a (click)="markCompletedTask(item.taskId)" mat-menu-item>
+              <mat-icon>check_circle_outline</mat-icon>
+              <span>Completed</span>
+            </a>
+          </mat-menu>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</div>

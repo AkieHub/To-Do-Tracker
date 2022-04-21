@@ -1,0 +1,174 @@
+<mat-toolbar class="mat-elevation-z8">
+  <a mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()">
+    <mat-icon *ngIf="!sidenav.opened" class="material-icons">
+      keyboard_double_arrow_right
+    </mat-icon>
+    <mat-icon *ngIf="sidenav.opened">
+      close
+    </mat-icon>
+  </a>
+  <img class="navbar-brand m-0 p-0 ml-3" height="40" width="10%" src="\assets\To_Do_Tracker_Logo.png"
+    alt="To Do Tracker Logo"/>
+</mat-toolbar>
+<mat-sidenav-container>
+  <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8">
+    <mat-nav-list class="text-center">
+      <input type='file' #img (change)="onSelectFile($event)" class="d-none select-profile-picture">
+      <a class="btn" (click)="img.click()">
+        <img [src]="url ? url : 'https://www.w3schools.com/howto/img_avatar.png'" class="avatar mat-elevation-z8">
+      </a><br>
+      <div class="name text-center">
+      <span>{{userName |uppercase}}</span>
+      <a mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+        <mat-icon>more_vert</mat-icon>
+      </a>
+      <mat-menu #menu="matMenu">
+        <a (click)="logOut()" mat-menu-item>
+          <mat-icon>logout</mat-icon>
+          <span>Log Out</span>
+        </a>
+        <a mat-menu-item (click)="openProfileDilog()">
+          <mat-icon>person</mat-icon>
+          <span>My Profile</span>
+        </a>
+      </mat-menu>
+    </div>
+    </mat-nav-list>
+    <mat-divider></mat-divider>
+    <mat-nav-list>
+      <a mat-button (click)="getAllTask()" class="menu-button">
+        <mat-icon>list</mat-icon>
+        <span>All Task</span>
+      </a>
+    </mat-nav-list>
+    <mat-nav-list>
+      <a mat-button class="menu-button" [matMenuTriggerFor]="status">
+        <mat-icon matBadge="10" matBadgeColor="warn" class="material-icons-two-tone">
+          notifications
+        </mat-icon>
+        <span>Notifications</span>
+      </a>
+    </mat-nav-list>
+    <mat-menu #status="matMenu">
+      <button  (click)="getPendingTask()" mat-menu-item>
+        <mat-icon matBadge="4" matBadgeColor="warn" class="material-icons-two-tone">pending_actions</mat-icon>
+        <span>Pending</span>
+      </button>
+      <button  (click)="getOverDueTask()" mat-menu-item>
+        <mat-icon matBadge="5" matBadgeColor="warn" class="material-icons-two-tone">gpp_maybe</mat-icon>
+        <span>Over Due</span>
+      </button>
+      <button  (click)="getNearDueTask()" mat-menu-item>
+        <mat-icon matBadge="1" matBadgeColor="warn" class="material-icons-two-tone">nearby_error</mat-icon>
+        <span>Near To Due</span>
+      </button>
+    </mat-menu>
+    <mat-nav-list>
+      <a mat-button (click)="getCompletedTask()" class="menu-button">
+        <mat-icon>check_circle_outline</mat-icon>
+        <span>Completed</span>
+      </a>
+    </mat-nav-list>
+    <mat-nav-list>
+      <a mat-button (click)="getAllDeletedTas()" class="menu-button">
+        <mat-icon>archive</mat-icon>
+        <span>Archive</span>
+      </a>
+    </mat-nav-list>
+    <mat-nav-list>
+      <a mat-button class="menu-button" [matMenuTriggerFor]="filter_list">
+        <mat-icon>filter_list</mat-icon>
+        <span>Filter</span>
+      </a>
+      <mat-menu #filter_list="matMenu">
+        <button mat-menu-item>
+          <mat-icon class="material-icons-two-tone"></mat-icon>
+          <span>One Week</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon class="material-icons-two-tone"></mat-icon>
+          <span>One Month</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon class="material-icons-two-tone"></mat-icon>
+          <span>Two Week</span>
+        </button>
+        
+      </mat-menu>
+    </mat-nav-list>
+    <mat-divider></mat-divider>
+    <mat-nav-list>
+      <a mat-button class="menu-button" routerLink="/contact">
+        <mat-icon>help</mat-icon>
+        <span>Help</span>
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content fxLayout="column">
+    <div class="content">
+      <app-task [typea]="type" [datareceive]="dataShare"></app-task>
+      <button mat-mini-fab (click)="openDialog()" color="primary" class="addTask material-icons-two-tone">+</button>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ <!-- <mat-nav-list>
+      <a mat-button [matMenuTriggerFor]="groupby" class="menu-button">
+        <mat-icon>group_work</mat-icon>
+        <span>Group By</span>
+      </a>
+    </mat-nav-list>
+    <mat-menu #groupby="matMenu">
+      <button mat-menu-item>
+        <mat-icon class="material-icons-two-tone">group_work</mat-icon>
+        <span>Priority</span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon class="material-icons-two-tone">group_work</mat-icon>
+        <span>Due Date</span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon class="material-icons-two-tone">group_work</mat-icon>
+        <span>Start Dtae</span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon class="material-icons-two-tone">group_work</mat-icon>
+        <span>Status</span>
+      </button>
+    </mat-menu> -->

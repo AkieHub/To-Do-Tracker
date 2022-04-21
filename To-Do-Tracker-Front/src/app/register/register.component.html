@@ -1,0 +1,88 @@
+
+<div class="card container bg-dark text-white">
+    <h5 class="card-header text-center fw-bold fs-6 border-white">To Do Tracker Registration Form    </h5>
+    <div class="card-body">
+        <form [formGroup]="register" class="flex-wrap" (ngSubmit)="onSubmit()">
+            <div class="form-row">
+                <div class="form-group col-lg-4">
+                    <label>First Name</label>
+                    <input type="text" name="firstName" class="form-control" formControlName="firstName">
+                    <div
+                        *ngIf="register.get('firstName')?.invalid && (register.get('firstName')?.dirty ||register.get('firstName')?.touched)">
+                        <div *ngIf="register.get('firstName')?.errors?.['required']">First Name is required</div>
+                    </div>
+                </div>
+                <div class="form-group col-lg-5">
+                    <label>Last Name</label>
+                    <input type="text" name="lastName" class="form-control" formControlName="lastName">
+                    <!-- <div *ngIf="f.submitted && lastName.invalid" class="invalid-feedback">
+                        <div *ngIf="lastName.errors.required">Last Name is required</div>
+                    </div> -->
+                </div>
+                <div class="form-group col-lg-3">
+                    <label>Gender</label>
+                    <select name="gender" class="form-control" formControlName="gender">
+                        <option value=""></option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Other">Other</option>
+                    </select>
+                    <div
+                        *ngIf="register.get('gender')?.invalid && (register.get('gender')?.dirty ||register.get('gender')?.touched)">
+                        <div *ngIf="register.get('gender')?.errors?.['required']">Gender is required</div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-lg-6">
+                    <label>Date of Birth</label>
+                    <input type="date" name="dateOfBirth" class="form-control"
+                        pattern="^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$" formControlName="dateOfBirth">
+                    <div
+                        *ngIf="register.get('dateOfBirth')?.invalid && (register.get('dateOfBirth')?.dirty ||register.get('dateOfBirth')?.touched)">
+                        <div *ngIf="register.get('dateOfBirth')?.errors?.['required']">Date of Birth is required</div>
+                        <div *ngIf="register.get('dateOfBirth')?.errors?.['notVailid']">Date of Birth must be >18</div>
+                    </div>
+                </div>
+                <div class="form-group col-lg-6">
+                    <label>Email</label>
+                    <input type="text" name="emailId" class="form-control" formControlName="emailId">
+                    <div
+                        *ngIf="register.get('emailId')?.invalid && (register.get('emailId')?.dirty ||register.get('emailId')?.touched)">
+                        <div *ngIf="register.get('emailId')?.errors?.['required']">Email is required</div>
+                        <div *ngIf="register.get('emailId')?.errors?.['email']">Email must be a valid email address
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-lg-6">
+                    <label>Password</label>
+                    <input type="password" name="userPassword" class="form-control" formControlName="userPassword">
+                    <div
+                        *ngIf="register.get('userPassword')?.invalid && (register.get('userPassword')?.dirty ||register.get('userPassword')?.touched)">
+                        <div *ngIf="register.get('userPassword')?.errors?.['required']">Password is required</div>
+                        <div *ngIf="register.get('userPassword')?.errors?.['minlength']">Password must be at least 6
+                            characters</div>
+                    </div>
+                </div>
+                <div class="form-group col-lg-6">
+                    <label>Confirm Password</label>
+                    <input type="password" name="confirmPassword" class="form-control"
+                        formControlName="confirmPassword">
+                    <div
+                        *ngIf="register.get('confirmPassword')?.invalid && (register.get('confirmPassword')?.dirty ||register.get('confirmPassword')?.touched)">
+                        <div *ngIf="register.get('confirmPassword')?.errors?.['required']">Confirm Password is required
+                        </div>
+                        <div *ngIf="register.get('confirmPassword')?.errors?.['passmatching']">Passwords must match
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center card-text">
+                <button type="submit" class="btn btn-outline-light mr-1" [disabled]="!register.valid">Register</button>
+                <button class="btn btn-light" type="reset">Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>
